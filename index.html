@@ -3,316 +3,589 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simulasi Ujian PPKn — 40 Soal</title>
+<title>Quiz TKA Bahasa Indonesia - Latihan 1</title>
 <style>
-:root{--green:#24764f;--green2:#1b5b3d;--mint:#e9f5ed;--bg:#f3f6f4;--ink:#202923;--muted:#66736b;--line:#dce5df;--orange:#f0a33a;--red:#c63e3e;--blue:#315fc4}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink);line-height:1.55}
-header{background:linear-gradient(120deg,#1b5b3d,#2c8a5a);color:#fff;padding:22px max(18px,calc((100% - 1180px)/2));}
-header .tag{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;opacity:.85}header h1{margin:5px 0;font-size:clamp(23px,3vw,32px)}header p{margin:4px 0 0;opacity:.9}
-.wrap{max-width:1180px;margin:22px auto;padding:0 16px}.tabs{display:flex;gap:8px;margin-bottom:18px}.tab{border:1px solid var(--line);background:#fff;border-radius:10px;padding:11px 17px;font-weight:700;cursor:pointer;color:var(--ink)}.tab.active{background:var(--green);color:white;border-color:var(--green)}
-.panel{background:white;border:1px solid var(--line);border-radius:16px;padding:clamp(16px,2.5vw,26px);box-shadow:0 4px 18px #183d2710}.hidden{display:none!important}
-h2{margin:0 0 12px;font-size:23px}h3{margin:22px 0 8px;font-size:18px;color:var(--green2)}p{margin:8px 0}ul,ol{padding-left:22px}li{margin:5px 0}.note{background:var(--mint);border-left:4px solid var(--green);padding:12px 14px;border-radius:8px;margin:12px 0}.topic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.topic{border:1px solid var(--line);border-radius:12px;padding:15px}.topic h3{margin:0 0 6px}.muted{color:var(--muted);font-size:14px}
-.exam-layout{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:18px;align-items:start}.exam-main{min-width:0}.exam-top{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:18px}.timer{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;background:#f0f5f1;padding:8px 13px;border-radius:10px;color:var(--green2)}.timer.warn{background:#fff0df;color:#9b5100}.timer.danger{background:#ffebeb;color:var(--red)}.progress-track{height:7px;background:#e8eee9;border-radius:99px;overflow:hidden;margin:10px 0 18px}.progress-fill{height:100%;background:var(--green);width:0%;transition:width .2s}.q-meta{display:flex;justify-content:space-between;gap:10px;align-items:center;color:var(--muted);font-size:13px}.q-title{font-size:19px;font-weight:750;margin:13px 0 18px;line-height:1.45}.options{display:grid;gap:10px}.option{display:flex;align-items:flex-start;gap:11px;border:1.5px solid var(--line);border-radius:11px;padding:12px;cursor:pointer;transition:.15s}.option:hover{border-color:#8ab79a;background:#fbfefc}.option.selected{border-color:var(--green);background:var(--mint)}.letter{width:29px;height:29px;flex:0 0 29px;border-radius:8px;background:#eef2ef;display:grid;place-items:center;font-weight:800;font-size:13px}.option.selected .letter{background:var(--green);color:white}.option input{position:absolute;opacity:0;pointer-events:none}.nav-buttons{display:flex;gap:9px;flex-wrap:wrap;justify-content:space-between;margin-top:22px}.btn{border:1px solid var(--line);border-radius:10px;padding:10px 15px;font-size:14px;font-weight:750;background:white;cursor:pointer;color:var(--ink)}.btn:disabled{opacity:.4;cursor:not-allowed}.btn.primary{background:var(--green);color:white;border-color:var(--green)}.btn.primary:hover{background:var(--green2)}.btn.flag{border-color:#e6b65e;background:#fff7e6;color:#805000}.btn.flag.marked{background:#ffe5a8;border-color:#d89018}.btn.danger{background:var(--red);border-color:var(--red);color:white}.side{position:sticky;top:12px}.side h3{margin:0 0 5px}.status-legend{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;font-size:12px;color:var(--muted)}.legend-dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;background:#fff;border:1px solid #aab6ad}.legend-dot.answered{background:var(--green);border-color:var(--green)}.legend-dot.flagged{background:#ffd77c;border-color:#d89018}.number-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:13px 0 18px}.num{border:1px solid var(--line);border-radius:8px;min-height:39px;background:white;font-weight:750;cursor:pointer;position:relative}.num.current{outline:3px solid #b7d8c2;border-color:var(--green)}.num.answered{background:var(--green);color:white;border-color:var(--green)}.num.flagged{box-shadow:inset 0 -5px 0 #ffd77c}.num.answered.flagged{box-shadow:inset 0 -5px 0 #ffd77c}.side .btn{width:100%;margin-top:7px}.callout{padding:11px;border-radius:9px;background:#f5f7f5;font-size:13px;color:var(--muted)}
-.result-score{font-size:46px;font-weight:850;color:var(--green);line-height:1.2}.result-card{padding:15px;border:1px solid var(--line);border-radius:12px;margin:12px 0}.review-item{border:1px solid var(--line);border-radius:11px;padding:14px;margin:12px 0}.correct{color:#187143;font-weight:750}.incorrect{color:#b32e2e;font-weight:750}.pill{display:inline-block;font-size:12px;padding:3px 8px;border-radius:99px;background:#eef2ef;color:#435048;margin-bottom:6px}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:26px 12px}
-@media(max-width:820px){.exam-layout{grid-template-columns:1fr}.side{position:static;order:-1}.side .number-grid{grid-template-columns:repeat(10,1fr)}.topic-grid{grid-template-columns:1fr}.side .number-grid{gap:5px}.num{min-height:34px}.side h3{display:inline-block}.side .btn{width:auto}.side .side-submit{width:100%}}
-@media(max-width:480px){header{padding:18px}.wrap{margin:14px auto;padding:0 10px}.tabs{display:grid;grid-template-columns:1fr 1fr}.tab{padding:10px 7px}.panel{padding:14px}.exam-top{align-items:flex-start;flex-direction:column}.timer{font-size:20px}.side .number-grid{grid-template-columns:repeat(8,1fr)}.q-title{font-size:17px}.nav-buttons .btn{flex:1}.option{padding:10px}}
+  *{box-sizing:border-box}
+  body{
+    margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;
+    background:#f4f7fb;color:#172033;line-height:1.6;
+  }
+  .wrap{max-width:900px;margin:auto;padding:24px 16px 50px}
+  .hero{
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:white;border-radius:22px;padding:28px 24px;margin-bottom:18px;
+    box-shadow:0 12px 30px rgba(37,99,235,.18)
+  }
+  .hero h1{margin:0 0 6px;font-size:28px}
+  .hero p{margin:0;opacity:.92}
+  .topbar{
+    position:sticky;top:10px;z-index:5;background:white;border:1px solid #e5eaf2;
+    border-radius:16px;padding:12px 14px;margin-bottom:16px;
+    box-shadow:0 6px 20px rgba(0,0,0,.06)
+  }
+  .row{display:flex;justify-content:space-between;gap:12px;align-items:center}
+  .progress{height:8px;background:#e9edf4;border-radius:99px;overflow:hidden;margin-top:10px}
+  .progress i{display:block;height:100%;width:0;background:#2563eb;transition:.25s}
+  .card{
+    background:white;border:1px solid #e5eaf2;border-radius:20px;padding:24px;
+    margin-bottom:16px;box-shadow:0 6px 20px rgba(20,35,60,.05)
+  }
+  .qnum{font-weight:800;color:#2563eb;font-size:14px;margin-bottom:6px}
+  .question{font-size:18px;font-weight:700;margin:0 0 16px}
+  .source{
+    background:#f7f9fc;border-left:4px solid #93c5fd;padding:12px 14px;
+    border-radius:8px;margin-bottom:16px;white-space:pre-line;color:#3c4759
+  }
+  .options{display:grid;gap:10px}
+  .option{
+    border:1px solid #dce3ee;background:#fff;border-radius:12px;padding:13px 14px;
+    cursor:pointer;transition:.15s;text-align:left;width:100%;font-size:15px
+  }
+  .option:hover{border-color:#93c5fd;background:#f8fbff}
+  .option.selected{border-color:#2563eb;background:#eff6ff}
+  .option.correct{border-color:#16a34a;background:#f0fdf4}
+  .option.wrong{border-color:#dc2626;background:#fef2f2}
+  .letter{font-weight:800;margin-right:8px}
+  .explanation{
+    display:none;margin-top:16px;padding:16px;border-radius:14px;background:#f8fafc;
+    border:1px solid #e2e8f0
+  }
+  .explanation.show{display:block}
+  .result{
+    display:none;background:white;border:1px solid #dbe3ef;border-radius:20px;
+    padding:24px;margin-top:18px;text-align:center
+  }
+  .result.show{display:block}
+  .score{font-size:42px;font-weight:900;color:#2563eb}
+  button.finish{
+    border:0;background:#172033;color:white;padding:13px 18px;border-radius:12px;
+    font-weight:800;cursor:pointer;margin-top:16px
+  }
+  button.reset{
+    border:1px solid #cbd5e1;background:white;color:#172033;padding:10px 14px;
+    border-radius:10px;font-weight:700;cursor:pointer
+  }
+  .tag{font-size:12px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.5px}
+  .good{color:#15803d;font-weight:800}
+  .bad{color:#b91c1c;font-weight:800}
+  @media(max-width:600px){
+    .hero h1{font-size:23px}.card{padding:18px}.question{font-size:17px}
+  }
 </style>
 </head>
 <body>
-<header>
-  <div class="tag">Latihan mandiri • PPKn</div>
-  <h1>Simulasi Ujian: Sistem Pemerintahan, ATHG, dan Politik</h1>
-  <p>40 soal pilihan ganda · Waktu 60 menit · Bisa tandai soal ragu-ragu</p>
-</header>
 <div class="wrap">
-  <div class="tabs">
-    <button class="tab active" id="tabMateri" onclick="showPage('materi')">📚 Materi Ringkas</button>
-    <button class="tab" id="tabUjian" onclick="showPage('ujian')">📝 Mulai / Lanjut Ujian</button>
+  <section class="hero">
+    <h1>Latihan TKA Bahasa Indonesia — Paket Ringan</h1>
+    <p>20 soal pilihan ganda. Setelah memilih A–E, langsung muncul jawaban dan pembahasan semua pilihan.</p>
+  </section>
+
+  <div class="topbar">
+    <div class="row">
+      <strong id="progressText">Soal 1 dari 20</strong>
+      <span id="scoreText">Skor: 0</span>
+    </div>
+    <div class="progress"><i id="bar"></i></div>
   </div>
 
-  <section id="materi" class="panel">
-    <h2>Materi belajar sebelum ujian</h2>
-    <p class="muted">Ringkasan berikut merangkum materi yang dibahas: bentuk negara dan pemerintahan, teori klasik, sistem pemerintahan, lembaga negara, ATHG, serta infrastruktur dan suprastruktur politik.</p>
-    <div class="note"><b>Tips:</b> Bedakan bentuk negara (kesatuan/federal), bentuk pemerintahan (republik/monarki), dan sistem pemerintahan (presidensial/parlementer). Ketiganya bukan istilah yang sama.</div>
-    <div class="topic-grid">
-      <article class="topic">
-        <h3>1. Bentuk negara</h3>
-        <p><b>Negara kesatuan:</b> satu negara berdaulat dengan susunan pemerintahan nasional dan pembagian kewenangan daerah menurut hukum. Contoh: Indonesia.</p>
-        <p><b>Negara federal:</b> kekuasaan dibagi oleh konstitusi antara pemerintah federal dan negara bagian. Contoh: Amerika Serikat.</p>
-      </article>
-      <article class="topic">
-        <h3>2. Monarki dan republik</h3>
-        <p><b>Monarki:</b> kepala negara berasal dari lembaga kerajaan, biasanya raja/ratu. Monarki absolut memberi penguasa ruang kekuasaan sangat besar; monarki konstitusional membatasi kekuasaan menurut konstitusi/hukum; monarki parlementer menempatkan raja/ratu sebagai kepala negara sementara PM memimpin pemerintahan.</p>
-        <p><b>Republik:</b> kepala negara bukan raja yang mewarisi takhta. Republik dapat memakai sistem presidensial atau parlementer; sebutan republik tidak otomatis berarti demokratis.</p>
-      </article>
-      <article class="topic">
-        <h3>3. Teori pemerintahan klasik</h3>
-        <p><b>Aristoteles:</b> monarki (satu orang demi umum), tirani (satu orang demi diri sendiri), aristokrasi (kelompok terbaik demi umum), oligarki (kelompok kecil demi kepentingannya), politeia (banyak orang demi umum), demokrasi dalam klasifikasi klasik Aristoteles (bentuk menyimpang yang mengutamakan kepentingan kelompok mayoritas).</p>
-        <p><b>Plato:</b> timokrasi mengutamakan kehormatan/prestise; oligarki dikuasai kelompok kaya; demokrasi menggambarkan kekuasaan rakyat dalam kerangka teori Plato; tirani merupakan bentuk kekuasaan sewenang-wenang.</p>
-        <p><b>Siklus Polybios (versi ringkas):</b> monarki → tirani → aristokrasi → oligarki → demokrasi → okhlokrasi (kekuasaan massa yang tidak terkendali) → kembali ke monarki.</p>
-      </article>
-      <article class="topic">
-        <h3>4. Presidensial dan parlementer</h3>
-        <p><b>Presidensial:</b> presiden adalah kepala negara sekaligus kepala pemerintahan; menteri membantu presiden; masa jabatan eksekutif dan legislatif terpisah. Contoh: Indonesia, Amerika Serikat.</p>
-        <p><b>Parlementer:</b> kepala negara terpisah dari kepala pemerintahan; perdana menteri memimpin kabinet dan kabinet harus mempertahankan dukungan parlemen. Contoh: Inggris, Jepang, India.</p>
-      </article>
-      <article class="topic">
-        <h3>5. Trias Politica dan lembaga negara</h3>
-        <p><b>Legislatif:</b> membuat undang-undang, anggaran, dan mengawasi pemerintah (contoh DPR). <b>Eksekutif:</b> menjalankan pemerintahan (presiden, menteri, pemerintah daerah). <b>Yudikatif:</b> kekuasaan kehakiman (MA dan MK sesuai kewenangannya).</p>
-        <p><b>MPR:</b> antara lain mengubah/menetapkan UUD. <b>DPD:</b> membawa aspirasi daerah pada bidang yang diatur UUD. <b>BPK:</b> memeriksa pengelolaan dan tanggung jawab keuangan negara. <b>KY:</b> memiliki tugas terkait kehormatan/perilaku hakim dan usulan calon hakim agung.</p>
-        <p><b>Checks and balances:</b> lembaga negara saling mengawasi dan mengimbangi agar kekuasaan tidak menumpuk.</p>
-      </article>
-      <article class="topic">
-        <h3>6. Contoh negara</h3>
-        <p><b>Indonesia:</b> kesatuan, republik, presidensial. <b>Amerika Serikat:</b> federal, republik, presidensial. <b>Inggris:</b> monarki konstitusional, parlementer. <b>Belanda:</b> monarki konstitusional, parlementer. <b>China:</b> republik dengan sistem politik yang dipimpin Partai Komunis China; bukan parlementer multipartai seperti Inggris.</p>
-      </article>
-      <article class="topic">
-        <h3>7. ATHG dan integrasi bangsa</h3>
-        <p><b>Integrasi bangsa:</b> proses menyatukan masyarakat yang beragam dalam satu bangsa. <b>Ancaman:</b> membahayakan kedaulatan, wilayah, keselamatan, atau persatuan. <b>Tantangan:</b> ujian yang harus dihadapi dan bisa menjadi peluang. <b>Hambatan:</b> sesuatu yang menyulitkan tujuan. <b>Gangguan:</b> tindakan/kondisi yang mengusik ketertiban atau persatuan.</p>
-      </article>
-      <article class="topic">
-        <h3>8. Ancaman militer/nonmiliter</h3>
-        <p><b>Militer:</b> memakai kekuatan bersenjata, misalnya agresi atau serangan bersenjata. <b>Nonmiliter:</b> dapat melalui informasi, ekonomi, ideologi, sosial budaya, atau teknologi, misalnya serangan siber dan hoaks yang memicu konflik. Kategori bergantung pada konteks dan dampak.</p>
-        <p><b>Peran pelajar:</b> toleransi, memeriksa informasi sebelum membagikan, menghargai budaya, menjaga perilaku, dan belajar dengan giat.</p>
-      </article>
-      <article class="topic">
-        <h3>9. Suprastruktur politik</h3>
-        <p>Perangkat formal negara yang memiliki kewenangan resmi. Contoh: presiden, DPR, MPR, DPD, MA, MK, BPK, dan pemerintah daerah. Fungsinya menjalankan pemerintahan, hukum, pengawasan, dan pelayanan sesuai kewenangan.</p>
-      </article>
-      <article class="topic">
-        <h3>10. Infrastruktur politik</h3>
-        <p>Kekuatan sosial-politik yang tumbuh dari masyarakat. Contoh: partai politik, kelompok kepentingan, organisasi masyarakat/LSM, media massa, kelompok penekan, tokoh masyarakat, dan kelompok warga. Fungsinya menyampaikan aspirasi, membentuk opini publik, dan melakukan pengawasan sosial.</p>
-        <p><b>Contoh hubungan:</b> warga menyampaikan masalah sampah melalui organisasi/media (infrastruktur), lalu pemerintah daerah menanggapi sesuai kewenangan (suprastruktur).</p>
-      </article>
-    </div>
-    <div class="note"><b>Catatan belajar:</b> Beberapa istilah teori politik klasik dapat berbeda antar buku. Untuk ujian sekolah, utamakan istilah dan contoh yang digunakan guru/PPT kamu.</div>
-    <button class="btn primary" onclick="startExam()">Saya siap, mulai ujian 60 menit →</button>
-  </section>
+  <main id="quiz"></main>
 
-  <section id="ujian" class="hidden">
-    <div class="exam-layout">
-      <main class="panel exam-main">
-        <div class="exam-top">
-          <div><div class="pill">SIMULASI UJIAN</div><div><b>40 soal pilihan ganda</b><div class="muted">Pilih satu jawaban untuk setiap soal.</div></div></div>
-          <div id="timer" class="timer" aria-live="polite">60:00</div>
-        </div>
-        <div class="q-meta"><span id="questionCounter">Soal 1 dari 40</span><span id="answeredCounter">Terjawab 0/40</span></div>
-        <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
-        <div id="questionText" class="q-title"></div>
-        <div id="options" class="options"></div>
-        <div class="nav-buttons">
-          <button class="btn" id="prevBtn" onclick="moveQuestion(-1)">← Sebelumnya</button>
-          <button class="btn flag" id="flagBtn" onclick="toggleFlag()">⚑ Tandai ragu-ragu</button>
-          <button class="btn primary" id="nextBtn" onclick="moveQuestion(1)">Berikutnya →</button>
-        </div>
-      </main>
-      <aside class="panel side">
-        <h3>Navigasi soal</h3>
-        <div class="muted">Pilih nomor untuk berpindah langsung.</div>
-        <div class="status-legend">
-          <span><i class="legend-dot"></i> Kosong</span>
-          <span><i class="legend-dot answered"></i> Terjawab</span>
-          <span><i class="legend-dot flagged"></i> Ragu</span>
-        </div>
-        <div id="numberGrid" class="number-grid"></div>
-        <div class="callout" id="sideSummary">Terjawab: 0 · Kosong: 40 · Ragu-ragu: 0</div>
-        <button class="btn primary side-submit" onclick="trySubmit()">Kumpulkan jawaban</button>
-        <button class="btn" onclick="showPage('materi')">Buka materi ringkas</button>
-      </aside>
-    </div>
-  </section>
-
-  <section id="hasil" class="panel hidden">
-    <h2>Hasil simulasi ujian</h2>
-    <p class="muted" id="submitReason"></p>
-    <div class="result-card">
-      <div class="muted">Nilai latihan</div>
-      <div class="result-score" id="score">0/100</div>
-      <div id="scoreDetails"></div>
-    </div>
-    <div class="result-card"><b>Ringkasan pengerjaan</b><p id="resultSummary"></p></div>
-    <h3>Pembahasan dan kunci jawaban</h3>
-    <p class="muted">Gunakan pembahasan ini untuk mengulang materi yang belum dikuasai.</p>
-    <div id="review"></div>
-    <button class="btn primary" onclick="restartExam()">Ulangi simulasi dengan waktu baru</button>
-    <button class="btn" onclick="showPage('materi')">Kembali ke materi</button>
-  </section>
+  <div class="result" id="result">
+    <div class="tag">Hasil latihan</div>
+    <div class="score" id="finalScore">0/20</div>
+    <p id="finalMessage"></p>
+    <button class="reset" onclick="location.reload()">Ulangi dari awal</button>
+  </div>
 </div>
-<footer>Simulasi belajar mandiri • Bukan ujian resmi sekolah • Jawaban disimpan sementara di halaman ini selama sesi berlangsung</footer>
 
 <script>
 const questions = [
-{topic:"Bentuk negara",q:"Indonesia disebut negara kesatuan karena ...",o:["Terdiri atas negara-negara bagian yang berdaulat sendiri","Merupakan satu negara berdaulat dengan pembagian kewenangan daerah menurut hukum","Kepala negaranya diwariskan melalui keluarga kerajaan","Pemerintah daerah bebas memisahkan diri"],a:1,e:"Negara kesatuan memiliki satu kedaulatan negara. Daerah dapat memiliki kewenangan, tetapi bukan negara bagian berdaulat seperti dalam federasi."},
-{topic:"Bentuk negara",q:"Negara yang membagi kewenangan berdasarkan konstitusi antara pemerintah federal dan negara bagian adalah ...",o:["Negara kesatuan","Monarki absolut","Negara federal","Republik parlementer"],a:2,e:"Dalam negara federal, pemerintah federal dan negara bagian memiliki kewenangan yang diatur konstitusi. Amerika Serikat adalah contoh."},
-{topic:"Monarki",q:"Dalam monarki absolut, ciri utamanya adalah ...",o:["Raja hanya simbol dan tidak memiliki peran apa pun","Raja memegang kekuasaan sangat besar tanpa pembatasan efektif","Perdana menteri selalu dipilih langsung oleh rakyat","Kepala negara harus presiden"],a:1,e:"Monarki absolut memberi raja kekuasaan sangat besar, tanpa pembatasan konstitusional yang efektif."},
-{topic:"Monarki",q:"Monarki konstitusional berarti ...",o:["Raja dapat mengabaikan semua hukum","Tidak ada konstitusi","Kekuasaan raja dibatasi konstitusi atau hukum","Kepala pemerintahan selalu raja absolut"],a:2,e:"Kekuasaan raja diatur dan dibatasi oleh konstitusi atau hukum."},
-{topic:"Monarki",q:"Dalam monarki parlementer, pemerintahan sehari-hari biasanya dipimpin oleh ...",o:["Perdana menteri dan kabinet","Raja seorang diri tanpa kabinet","Ketua Mahkamah Agung","Kepala militer"],a:0,e:"Raja/ratu menjadi kepala negara, sedangkan perdana menteri dan kabinet menjalankan pemerintahan sehari-hari."},
-{topic:"Republik",q:"Pernyataan yang tepat tentang republik adalah ...",o:["Semua republik pasti demokratis","Kepala negara selalu raja","Kepala negara bukan raja yang mewarisi takhta","Republik selalu memakai sistem parlementer"],a:2,e:"Republik bukan monarki turun-temurun. Sistemnya dapat berbeda, dan sebutan republik tidak otomatis menjamin demokrasi."},
-{topic:"Teori klasik",q:"Dalam klasifikasi Aristoteles, pemerintahan satu orang demi kepentingan umum disebut ...",o:["Tirani","Monarki","Oligarki","Okhlokrasi"],a:1,e:"Monarki merupakan bentuk pemerintahan satu orang yang diarahkan pada kepentingan umum dalam teori Aristoteles."},
-{topic:"Teori klasik",q:"Pemerintahan satu orang yang menggunakan kekuasaan untuk kepentingannya sendiri disebut ...",o:["Monarki","Aristokrasi","Tirani","Politeia"],a:2,e:"Tirani adalah bentuk menyimpang ketika penguasa tunggal bertindak demi kepentingannya sendiri atau sewenang-wenang."},
-{topic:"Teori klasik",q:"Pemerintahan oleh kelompok yang dianggap terbaik demi kepentingan umum disebut ...",o:["Aristokrasi","Oligarki","Tirani","Okhlokrasi"],a:0,e:"Aristokrasi dalam klasifikasi klasik adalah pemerintahan oleh kelompok yang dianggap terbaik demi kepentingan umum."},
-{topic:"Teori klasik",q:"Pemerintahan oleh kelompok kecil yang mengutamakan kepentingan kelompoknya disebut ...",o:["Politeia","Monarki","Aristokrasi","Oligarki"],a:3,e:"Oligarki merupakan pemerintahan kelompok kecil yang mengutamakan kepentingannya sendiri."},
-{topic:"Teori klasik",q:"Dalam materi siklus Polybios, okhlokrasi berarti ...",o:["Pemerintahan raja yang dibatasi hukum","Pemerintahan massa yang tidak terkendali","Pemerintahan kelompok terbaik","Pemerintahan oleh perdana menteri"],a:1,e:"Okhlokrasi adalah kekuasaan massa yang tidak terkendali dalam gambaran siklus Polybios."},
-{topic:"Teori klasik",q:"Urutan ringkas siklus Polybios yang tepat adalah ...",o:["Monarki → tirani → aristokrasi → oligarki → demokrasi → okhlokrasi","Tirani → monarki → demokrasi → federal → republik","Oligarki → monarki → parlementer → presidensial","Demokrasi → aristokrasi → federal → monarki"],a:0,e:"Urutan ringkas pada materi: monarki, tirani, aristokrasi, oligarki, demokrasi, okhlokrasi, lalu kembali ke monarki."},
-{topic:"Teori klasik",q:"Dalam teori Plato, timokrasi berkaitan dengan pemerintahan yang mengutamakan ...",o:["Kehormatan atau prestise","Pembagian negara menjadi negara bagian","Kepala negara berupa raja simbolis","Pengadilan konstitusi"],a:0,e:"Timokrasi dalam teori Plato dikaitkan dengan kehormatan, prestise, dan semangat militer."},
-{topic:"Sistem pemerintahan",q:"Sistem pemerintahan Indonesia adalah ...",o:["Monarki parlementer","Presidensial","Parlementer","Monarki absolut"],a:1,e:"Indonesia menggunakan sistem presidensial. Presiden menjadi kepala negara sekaligus kepala pemerintahan."},
-{topic:"Sistem pemerintahan",q:"Ciri pokok sistem presidensial adalah ...",o:["Perdana menteri selalu menjadi kepala negara","Kabinet harus selalu mendapat mosi percaya parlemen untuk tetap menjabat","Presiden menjadi kepala negara dan kepala pemerintahan","Raja memimpin kabinet"],a:2,e:"Dalam sistem presidensial, presiden memegang peran kepala negara dan kepala pemerintahan."},
-{topic:"Sistem pemerintahan",q:"Dalam sistem parlementer, kabinet umumnya harus mempertahankan ...",o:["Dukungan parlemen","Dukungan raja absolut saja","Persetujuan pengadilan untuk setiap keputusan","Kekuasaan negara bagian"],a:0,e:"Kabinet parlementer bergantung pada dukungan atau kepercayaan parlemen."},
-{topic:"Sistem pemerintahan",q:"Pasangan negara dan sistem pemerintahan yang tepat adalah ...",o:["Amerika Serikat — parlementer","Indonesia — monarki","Inggris — presidensial","Amerika Serikat — presidensial"],a:3,e:"Amerika Serikat merupakan republik federal dengan sistem presidensial."},
-{topic:"Sistem pemerintahan",q:"Dalam sistem parlementer Inggris, kepala negara dan kepala pemerintahan adalah ...",o:["Presiden dan gubernur","Raja/ratu dan perdana menteri","Perdana menteri dan ketua parlemen","Raja/ratu dan ketua Mahkamah Agung"],a:1,e:"Raja/ratu menjadi kepala negara, sedangkan perdana menteri memimpin pemerintahan."},
-{topic:"Lembaga negara",q:"Lembaga yang memiliki fungsi legislasi, anggaran, dan pengawasan di tingkat nasional adalah ...",o:["DPR","BPK","MA","KY"],a:0,e:"DPR menjalankan fungsi legislasi, anggaran, dan pengawasan sesuai UUD dan peraturan."},
-{topic:"Lembaga negara",q:"Cabang kekuasaan yang bertugas melaksanakan undang-undang dan menjalankan pemerintahan disebut ...",o:["Yudikatif","Eksekutif","Legislatif","Pers"],a:1,e:"Eksekutif menjalankan pemerintahan; di Indonesia dipimpin presiden di tingkat nasional."},
-{topic:"Lembaga negara",q:"Mahkamah Konstitusi memiliki kewenangan untuk ...",o:["Membuat semua peraturan daerah","Memeriksa keuangan negara","Menguji undang-undang terhadap UUD 1945","Memimpin kabinet"],a:2,e:"Salah satu kewenangan MK adalah menguji undang-undang terhadap UUD 1945."},
-{topic:"Lembaga negara",q:"Lembaga yang memeriksa pengelolaan dan tanggung jawab keuangan negara adalah ...",o:["MPR","DPD","KY","BPK"],a:3,e:"BPK adalah Badan Pemeriksa Keuangan."},
-{topic:"Lembaga negara",q:"Prinsip checks and balances bertujuan untuk ...",o:["Menumpuk kekuasaan pada satu lembaga","Menghapus semua lembaga negara","Membuat lembaga saling mengawasi dan mengimbangi","Membuat pengadilan berada di bawah partai"],a:2,e:"Checks and balances mencegah penumpukan kekuasaan dengan mekanisme saling mengawasi dan mengimbangi."},
-{topic:"Contoh negara",q:"Pasangan yang tepat adalah ...",o:["Indonesia — federal","Amerika Serikat — federal","Belanda — republik presidensial","Inggris — republik"],a:1,e:"Amerika Serikat adalah negara federal dan republik dengan sistem presidensial."},
-{topic:"ATHG",q:"Integrasi bangsa adalah ...",o:["Proses menyatukan masyarakat yang beragam dalam satu bangsa","Proses memisahkan wilayah menjadi negara baru","Penghapusan seluruh budaya daerah","Penyerahan semua kewenangan kepada militer"],a:0,e:"Integrasi bangsa menyatukan unsur masyarakat yang beragam menjadi satu kesatuan bangsa."},
-{topic:"ATHG",q:"Keadaan atau tindakan yang membahayakan kedaulatan, keutuhan wilayah, atau keselamatan negara disebut ...",o:["Tantangan","Ancaman","Hambatan","Toleransi"],a:1,e:"Ancaman membahayakan kedaulatan, wilayah, keselamatan, atau persatuan bangsa."},
-{topic:"ATHG",q:"Persaingan ekonomi global yang menuntut peningkatan kualitas produk merupakan ...",o:["Tirani","Gangguan militer","Tantangan","Monarki"],a:2,e:"Tantangan menguji kemampuan bangsa dan dapat menjadi peluang jika ditangani dengan tepat."},
-{topic:"ATHG",q:"Ketimpangan pembangunan antardaerah yang menyulitkan pemerataan termasuk ...",o:["Hambatan","Monarki","Checks and balances","Agresi"],a:0,e:"Ketimpangan pembangunan merupakan hambatan bagi pemerataan dan integrasi."},
-{topic:"ATHG",q:"Hoaks yang memicu keributan dan mengusik persatuan masyarakat dapat dikategorikan sebagai ...",o:["Bentuk monarki","Gangguan","Negara federal","Trias Politica"],a:1,e:"Hoaks yang mengusik ketertiban dan persatuan merupakan contoh gangguan; konteks tertentu bisa membuat dampaknya menjadi ancaman lebih serius."},
-{topic:"Ancaman",q:"Serangan bersenjata terhadap wilayah negara termasuk ...",o:["Ancaman militer","Tantangan budaya","Hambatan pendidikan","Infrastruktur politik"],a:0,e:"Serangan bersenjata menggunakan kekuatan militer sehingga dikategorikan sebagai ancaman militer."},
-{topic:"Ancaman",q:"Serangan siber yang melumpuhkan layanan pusat data merupakan contoh ancaman ...",o:["Monarki","Nonmiliter melalui teknologi informasi","Aristokrasi","Parlementer"],a:1,e:"Serangan siber memanfaatkan teknologi informasi dan dapat mengganggu layanan penting tanpa serangan bersenjata langsung."},
-{topic:"Integrasi bangsa",q:"Tindakan pelajar yang tepat saat menerima berita provokatif yang belum terverifikasi adalah ...",o:["Langsung menyebarkannya","Menambah cerita agar viral","Memeriksa sumber dan tidak menyebarkannya sebelum jelas","Menyalahkan kelompok tertentu"],a:2,e:"Literasi digital dan sikap tidak mudah percaya pada berita yang belum jelas membantu mencegah konflik."},
-{topic:"Integrasi bangsa",q:"Sikap yang mendukung integrasi bangsa adalah ...",o:["Mendiskriminasi teman yang berbeda budaya","Memaksakan semua orang memiliki tradisi sama","Menolak bekerja sama dengan kelompok lain","Menghormati perbedaan dan menyelesaikan konflik secara damai"],a:3,e:"Toleransi dan penyelesaian konflik secara damai mendukung persatuan."},
-{topic:"Politik",q:"Suprastruktur politik adalah ...",o:["Perangkat formal negara yang memiliki kewenangan resmi","Semua akun media sosial warga","Kelompok pertemanan tanpa fungsi sosial","Hanya organisasi olahraga"],a:0,e:"Suprastruktur adalah lembaga formal negara, misalnya presiden, DPR, MA, dan MK."},
-{topic:"Politik",q:"Contoh infrastruktur politik adalah ...",o:["Mahkamah Agung","Presiden","Organisasi masyarakat yang menyampaikan aspirasi","BPK"],a:2,e:"Organisasi masyarakat termasuk kekuatan sosial-politik yang dapat menyampaikan aspirasi dan melakukan pengawasan sosial."},
-{topic:"Politik",q:"Fungsi utama infrastruktur politik adalah ...",o:["Mengadili semua perkara pidana","Menyalurkan aspirasi masyarakat dan melakukan pengawasan sosial","Menggantikan seluruh kewenangan pemerintah","Membuat putusan Mahkamah Konstitusi"],a:1,e:"Infrastruktur politik membantu menyalurkan aspirasi, membentuk opini publik, dan mengawasi kekuasaan."},
-{topic:"Politik",q:"DPR membahas rancangan undang-undang dalam kedudukannya sebagai lembaga negara. DPR termasuk ...",o:["Kelompok penekan","Infrastruktur politik","Media massa","Suprastruktur politik"],a:3,e:"DPR merupakan lembaga resmi negara, sehingga termasuk suprastruktur politik."},
-{topic:"Politik",q:"Serikat pekerja menyampaikan usulan tentang perlindungan pekerja kepada pemerintah. Dalam peran tersebut, serikat pekerja merupakan ...",o:["Lembaga yudikatif","Infrastruktur politik","Mahkamah Konstitusi","Lembaga eksekutif"],a:1,e:"Serikat pekerja sebagai kelompok kepentingan menyalurkan aspirasi masyarakat dan termasuk infrastruktur politik."},
-{topic:"Politik",q:"Media massa memberitakan dugaan penyalahgunaan anggaran agar publik mengetahui dan dapat mengawasi. Peran ini berkaitan dengan ...",o:["Pengawasan sosial dalam infrastruktur politik","Kekuasaan mengadili perkara","Kewenangan membubarkan parlemen","Monarki absolut"],a:0,e:"Media massa dapat memberi informasi dan menjalankan fungsi pengawasan sosial; media bukan lembaga pengadilan."},
-{topic:"Politik",q:"Warga menyampaikan keluhan tentang sampah melalui organisasi masyarakat, kemudian pemerintah daerah menindaklanjutinya. Pernyataan yang tepat adalah ...",o:["Warga dan organisasi menjalankan fungsi infrastruktur, sedangkan pemerintah daerah menjalankan fungsi suprastruktur","Semua pihak otomatis menjadi lembaga yudikatif","Pemerintah daerah termasuk media massa","Organisasi masyarakat memiliki kewenangan menetapkan undang-undang nasional"],a:0,e:"Organisasi masyarakat membantu menyalurkan aspirasi sebagai infrastruktur politik; pemerintah daerah merupakan bagian perangkat formal negara atau suprastruktur politik."}
+{
+ q:"Makna kata “esensi” dalam kalimat “Pendidikan karakter memiliki esensi dan makna yang sama dengan pendidikan moral dan akhlak” adalah …",
+ options:[
+  "Sumber",
+  "Dasar",
+  "Inti",
+  "Sari",
+  "Isi"
+ ],
+ answer:2,
+ exp:[
+  "Salah. “Sumber” berarti asal atau tempat sesuatu berasal, bukan makna utama dari esensi.",
+  "Salah. “Dasar” dapat berarti landasan, tetapi bukan pilihan paling tepat untuk “esensi” dalam konteks ini.",
+  "Benar. Esensi berarti inti, hakikat, atau bagian paling pokok dari sesuatu.",
+  "Salah. “Sari” dapat berarti bagian yang paling penting, tetapi “inti” adalah padanan yang paling tepat di sini.",
+  "Salah. “Isi” berarti kandungan, sedangkan esensi lebih khusus berarti hakikat atau inti."
+ ],
+ source:"Sumber latihan: Paket 3, soal tentang makna kata “esensi”."
+},
+{
+ q:"Kalimat fakta pada paragraf tentang operator taksi PT Express Transindo Utama Tbk ditunjukkan oleh nomor …",
+ options:[
+  "(1) dan (2)",
+  "(2) dan (3)",
+  "(3) dan (4)",
+  "(4) dan (5)",
+  "(5) dan (6)"
+ ],
+ answer:3,
+ exp:[
+  "Salah. Kalimat (1) memuat target, sedangkan (2) membahas rencana dengan konsep berbeda.",
+  "Salah. Kalimat (2) bersifat rencana dan (3) menjelaskan rencana penggajian.",
+  "Salah. Kalimat (3) merupakan rencana, sedangkan (4) menyatakan kondisi yang ada.",
+  "Benar. Kalimat (4) dan (5) menyajikan jumlah pengemudi serta nominal setoran yang dapat diverifikasi.",
+  "Salah. Kalimat (5) merupakan fakta, tetapi (6) memakai kata “diharapkan” sehingga berisi harapan."
+ ],
+ source:"Sumber latihan: Paket 3, soal fakta tentang pengemudi taksi."
+},
+{
+ q:"Gagasan utama paragraf tentang bercocok tanam dengan cara hidroponik adalah …",
+ options:[
+  "Menanam tanaman hidroponik di mana saja dan kapan saja",
+  "Bercocok tanam dengan hidroponik terbukti banyak manfaat dan sangat hemat",
+  "Tanaman hidroponik sangat menguntungkan bagi orang yang sibuk",
+  "Pertumbuhan yang lebih cepat sehingga singkat waktu tanamnya",
+  "Manfaat bercocok tanam dengan cara hidroponik"
+ ],
+ answer:4,
+ exp:[
+  "Salah. Ini hanya salah satu manfaat, bukan keseluruhan gagasan paragraf.",
+  "Salah. Pernyataan ini cukup dekat, tetapi “sangat hemat” bukan satu-satunya fokus paragraf.",
+  "Salah. Paragraf tidak membatasi manfaat hidroponik hanya untuk orang sibuk.",
+  "Salah. Pertumbuhan cepat hanya salah satu manfaat.",
+  "Benar. Hampir seluruh paragraf merinci berbagai manfaat bercocok tanam secara hidroponik."
+ ],
+ source:"Sumber latihan: Paket 3, soal gagasan utama hidroponik."
+},
+{
+ q:"Kalimat penjelas yang tidak sesuai dengan paragraf tentang kondisi Bali dan erupsi Gunung Agung adalah nomor …",
+ options:["(1)","(2)","(3)","(4)","(5)"],
+ answer:2,
+ exp:[
+  "Salah. Kalimat (1) masih membahas kondisi Bali.",
+  "Salah. Kalimat (2) masih menjelaskan kunjungan Menteri Pariwisata ke Pura Besakih.",
+  "Benar. Kalimat (3) menyatakan Pura Besakih berada dalam radius yang harus dikosongkan, tetapi konteks paragraf menampilkan kunjungan ke lokasi tersebut sebagai bagian dari penjelasan keamanan sehingga kalimat ini menjadi bagian yang tidak selaras.",
+  "Salah. Kalimat (4) masih berkaitan dengan imbauan pemerintah kepada warga.",
+  "Salah. Kalimat (5) masih menjelaskan tanda-tanda erupsi."
+ ],
+ source:"Sumber latihan: Paket 3, soal kalimat penjelas tidak sesuai."
+},
+{
+ q:"Kata “tersebut” dalam kalimat “Keputusan tersebut dinilai sebagai kemunduran bagi upaya mengurangi sampah plastik” merujuk pada …",
+ options:[
+  "Yayasan Lembaga Konsumen Indonesia (YLKI)",
+  "Penghentian program kantong plastik berbayar",
+  "Protes atas program kantong plastik berbayar",
+  "Upaya masyarakat mengurangi sampah plastik",
+  "Pemberlakuan kantong plastik berbayar"
+ ],
+ answer:1,
+ exp:[
+  "Salah. YLKI adalah pihak yang melakukan protes, bukan keputusan yang dimaksud.",
+  "Benar. Kalimat sebelumnya menyebut penghentian program kantong plastik berbayar; itulah yang disebut “keputusan tersebut”.",
+  "Salah. Protes adalah tindakan YLKI, bukan keputusan yang dinilai sebagai kemunduran.",
+  "Salah. Ini merupakan tujuan yang hendak dicapai, bukan rujukan kata “tersebut”.",
+  "Salah. Yang dinilai sebagai kemunduran adalah penghentian program, bukan pemberlakuannya."
+ ],
+ source:"Sumber latihan: Paket 3, soal rujukan kata “tersebut”."
+},
+{
+ q:"Pandangan penulis yang sesuai dengan teks tentang pendidikan karakter dan full day school adalah …",
+ options:[
+  "Pendidikan Indonesia memuat aspek pendidikan karakter, pendidikan keahlian, dan pengetahuan umum.",
+  "Pelajar SMP memperoleh pendidikan pengetahuan lebih banyak daripada pendidikan karakter.",
+  "Sebagian besar warga masyarakat menolak penerapan sistem full day school.",
+  "Kegiatan penanaman pendidikan karakter dapat dilakukan pihak sekolah dalam bentuk permainan edukatif.",
+  "Siswa dapat mengikuti kegiatan ekstrakurikuler untuk mendapatkan pendidikan karakter."
+ ],
+ answer:4,
+ exp:[
+  "Salah. Teks menyebut pendidikan karakter dan pengetahuan umum, bukan pendidikan keahlian sebagai aspek yang dibahas.",
+  "Salah. Pada SMP, pendidikan karakter justru 60% dan pengetahuan umum 40%.",
+  "Salah. Teks tidak menyatakan sebagian besar masyarakat menolak program tersebut.",
+  "Salah. Teks memberi contoh ekstrakurikuler, bukan permainan edukatif.",
+  "Benar. Teks secara langsung menyatakan kegiatan ekstrakurikuler dapat menjadi sarana penanaman pendidikan karakter."
+ ],
+ source:"Sumber latihan: Paket 3, soal pandangan penulis."
+},
+{
+ q:"Perbedaan penggunaan bahasa Teks I tentang HIIT dan Teks II tentang olahraga bagi orang sibuk adalah …",
+ options:[
+  "Bahasa ilmiah — bahasa sehari-hari",
+  "Bahasa baku — bahasa tidak baku",
+  "Bahasa resmi — bahasa santai",
+  "Bahasa ilmiah — bahasa santai",
+  "Bahasa sehari-hari — bahasa ilmiah"
+ ],
+ answer:4,
+ exp:[
+  "Salah. Teks I justru banyak memakai ungkapan santai seperti “nggak”, “kayak”, dan “lho”.",
+  "Salah. Perbedaan utamanya bukan sekadar baku dan tidak baku.",
+  "Salah. Istilah “resmi” dan “santai” kurang tepat untuk menggambarkan perbedaan utama kedua teks.",
+  "Salah. Teks I memang santai, tetapi Teks II lebih tepat disebut formal/ilmiah, sehingga pilihan ini terbalik.",
+  "Benar. Teks I menggunakan bahasa sehari-hari, sedangkan Teks II menggunakan bahasa yang lebih formal dan informatif."
+ ],
+ source:"Sumber latihan: Paket 3, soal perbedaan penggunaan bahasa."
+},
+{
+ q:"Tanggapan yang tepat terhadap paragraf tentang kerja sama pendidikan Indonesia dan Hungaria adalah …",
+ options:[
+  "Indonesia tidak perlu mempersiapkan diri memajukan bidang pendidikannya agar bisa mendapatkan penghargaan Nobel.",
+  "Hungaria merupakan salah satu negara maju dan telah mampu melahirkan ilmuwan terkenal di seluruh dunia.",
+  "Indonesia perlu meningkatkan kerja sama di bidang pendidikan dengan Hungaria untuk meningkatkan mutu pendidikan di Indonesia.",
+  "Para siswa harus mendukung usaha pemerintah dengan cara rajin belajar.",
+  "Pemerintah Indonesia harus menyumbangkan inovasi dan dedikasi kepada dunia internasional, terutama di bidang pendidikan."
+ ],
+ answer:2,
+ exp:[
+  "Salah. Tanggapan ini justru bertentangan dengan isi paragraf yang mendorong peningkatan kerja sama pendidikan.",
+  "Salah. Pernyataan ini sesuai sebagian, tetapi hanya mengulang informasi dan bukan tanggapan yang paling tepat.",
+  "Benar. Tanggapan ini sejalan dengan isi teks: kerja sama dengan Hungaria diharapkan membantu meningkatkan mutu pendidikan Indonesia.",
+  "Salah. Rajin belajar merupakan hal positif, tetapi bukan fokus utama paragraf.",
+  "Salah. Pernyataan ini berupa tuntutan yang tidak langsung menjadi kesimpulan dari paragraf."
+ ],
+ source:"Sumber latihan: Paket 3, soal tanggapan."
+},
+{
+ q:"Kata serapan “boyongan” pada kutipan cerpen memperjelas peristiwa …",
+ options:[
+  "Pindahan pegawai untuk kepentingan promosi jabatan.",
+  "Pindah rumah dari kampung halaman ke tempat jauh untuk waktu lama.",
+  "Pindah rumah bersama seluruh anggota keluarga dengan membawa barang-barang rumah tangga.",
+  "Pindah rumah mengikuti tugas kedinasan orang tua di tempat baru yang jauh.",
+  "Pindah rumah sementara sebelum berpindah lagi ke rumah dinas lain."
+ ],
+ answer:2,
+ exp:[
+  "Salah. Kata boyongan tidak khusus berarti promosi jabatan.",
+  "Salah. Ini mendekati, tetapi belum menjelaskan unsur pindah bersama seluruh keluarga dan barang.",
+  "Benar. Boyongan menggambarkan pindah rumah secara bersama-sama dengan membawa barang-barang rumah tangga.",
+  "Salah. Teks memang menyebut mengikuti tempat kerja Ayah, tetapi makna kata boyongan lebih luas daripada tugas kedinasan.",
+  "Salah. Tidak ada makna bahwa perpindahan itu hanya sementara."
+ ],
+ source:"Sumber latihan: Paket 1, soal kata serapan “boyongan”."
+},
+{
+ q:"Hubungan makna antara kalimat (2) dan (3) pada paragraf tentang perubahan iklim adalah …",
+ options:[
+  "Akibat-sebab yang diperkuat dengan contoh deforestasi dan kerusakan lingkungan.",
+  "Sebab-akibat yang mengajak pembaca untuk mengambil langkah tegas.",
+  "Penegasan yang diperinci dengan contoh konkret yang bisa diaplikasikan pembaca.",
+  "Perbandingan dari dua pandangan terkait dampak negatif deforestasi.",
+  "Penyimpulan bahwa teknologi hijau merupakan solusi masalah deforestasi."
+ ],
+ answer:1,
+ exp:[
+  "Salah. Kalimat (2) berisi akibat perubahan iklim, lalu kalimat (3) menyatakan tindakan yang perlu dilakukan; bukan hubungan akibat-sebab.",
+  "Benar. Dampak pada kalimat (2) menjadi alasan munculnya ajakan untuk mengambil langkah tegas pada kalimat (3).",
+  "Salah. Kalimat (3) bukan contoh konkret, melainkan ajakan.",
+  "Salah. Tidak ada perbandingan dua pandangan.",
+  "Salah. Kesimpulan tentang teknologi hijau baru dijelaskan pada kalimat berikutnya."
+ ],
+ source:"Sumber latihan: Paket 1, soal hubungan makna antarkalimat."
+},
+{
+ q:"Kalimat yang tepat untuk mengakhiri uraian tentang teknologi hijau adalah …",
+ options:[
+  "Pada sisi lain, teknologi hijau memunculkan deforestasi dan polusi.",
+  "Sehingga dampak negatif lingkungan berdampak pula pada kualitas hidup.",
+  "Di samping itu, teknologi hijau dapat menciptakan dunia yang lebih baik untuk generasi yang akan datang.",
+  "Di samping itu, bumi yang menggunakan teknologi hijau akan semakin menghadapi tantangan besar.",
+  "Jadi, teknologi hijau berperan dalam menghilangnya keanekaragaman hayati."
+ ],
+ answer:2,
+ exp:[
+  "Salah. Ini bertentangan dengan isi paragraf yang menempatkan teknologi hijau sebagai solusi.",
+  "Salah. Struktur kalimatnya tidak efektif dan maknanya tidak menjadi penutup yang logis.",
+  "Benar. Pernyataan ini memperkuat kesimpulan positif tentang manfaat teknologi hijau bagi masa depan.",
+  "Salah. Pernyataan ini bertentangan dengan gagasan utama.",
+  "Salah. Menghilangnya keanekaragaman hayati adalah masalah yang hendak diatasi, bukan dampak positif teknologi hijau."
+ ],
+ source:"Sumber latihan: Paket 1, soal melengkapi akhir uraian."
+},
+{
+ q:"Kata tidak baku dalam teks tentang kampanye gaya hidup ramah lingkungan adalah …",
+ options:["Edukasi","Tumbler","Ribet","Komunitas","Program"],
+ answer:2,
+ exp:[
+  "Salah. “Edukasi” sudah merupakan kata yang digunakan dalam bahasa Indonesia.",
+  "Salah. “Tumbler” merupakan istilah asing, tetapi pertanyaan pada sumber mengarahkan pada kata tidak baku dalam pemakaian bahasa Indonesia.",
+  "Benar. “Ribet” merupakan bentuk tidak baku; bentuk baku yang sesuai adalah “rumit”.",
+  "Salah. “Komunitas” merupakan kata baku.",
+  "Salah. “Program” merupakan kata baku."
+ ],
+ source:"Sumber latihan: Paket 1, soal kata tidak baku."
+},
+{
+ q:"Informasi yang tidak sesuai dengan teks tentang kampanye gaya hidup ramah lingkungan adalah …",
+ options:[
+  "Sampah plastik membutuhkan waktu lama untuk terurai.",
+  "Pemerintah membuat kebijakan untuk membatasi penggunaan plastik.",
+  "Semua masyarakat Indonesia telah berhenti menggunakan plastik.",
+  "Gerakan membawa tumbler merupakan bagian dari gaya hidup ramah lingkungan.",
+  "Edukasi lingkungan juga dilakukan melalui media sosial."
+ ],
+ answer:2,
+ exp:[
+  "Salah. Informasi ini sesuai dengan teks.",
+  "Salah. Teks memang menyebut pemerintah berupaya membatasi penggunaan plastik.",
+  "Benar. Teks justru menyatakan masih ada orang yang memilih menggunakan plastik.",
+  "Salah. Gerakan membawa tumbler disebut sebagai bagian dari kebiasaan ramah lingkungan.",
+  "Salah. Teks menyebut edukasi dilakukan melalui media sosial dan program lingkungan di sekolah."
+ ],
+ source:"Sumber latihan: Paket 1, soal kesesuaian informasi."
+},
+{
+ q:"Pada teks kampanye lingkungan, pernyataan “Sampah plastik membutuhkan waktu ratusan tahun untuk terurai” termasuk …",
+ options:["Fakta","Opini","Saran","Hipotesis","Sindiran"],
+ answer:0,
+ exp:[
+  "Benar. Pernyataan tersebut menyampaikan informasi yang dapat diverifikasi, sehingga termasuk fakta.",
+  "Salah. Opini berisi pendapat atau penilaian, sedangkan kalimat ini berupa informasi faktual.",
+  "Salah. Kalimat tersebut tidak berisi anjuran.",
+  "Salah. Kalimat tersebut tidak berupa dugaan yang sedang diuji.",
+  "Salah. Tidak ada maksud menyindir dalam kalimat tersebut."
+ ],
+ source:"Sumber latihan: Paket 1, bagian fakta dan opini."
+},
+{
+ q:"Konjungsi yang tepat untuk melengkapi kalimat: “Banyak orang datang ke kota untuk mencari pekerjaan, ___ tidak semua berhasil mencapai apa yang mereka impikan. ___, mereka juga harus beradaptasi dengan gaya hidup kota yang serba cepat.” adalah …",
+ options:[
+  "dan, selain itu",
+  "tetapi, selain itu",
+  "karena, sehingga",
+  "bahkan, meskipun",
+  "dan, demikian"
+ ],
+ answer:1,
+ exp:[
+  "Salah. Hubungan pertama adalah pertentangan, bukan sekadar penambahan.",
+  "Benar. “Tetapi” menunjukkan pertentangan, sedangkan “selain itu” menambahkan informasi lain.",
+  "Salah. “Karena” dan “sehingga” tidak sesuai dengan hubungan makna antarkalimat.",
+  "Salah. “Bahkan” tidak tepat untuk hubungan pertama dan “meskipun” juga tidak sesuai pada posisi kedua.",
+  "Salah. “Demikian” tidak tepat untuk menambahkan informasi pada kalimat kedua."
+ ],
+ source:"Sumber latihan: Paket 1, soal konjungsi."
+},
+{
+ q:"Kata yang penulisannya tidak sesuai kaidah dalam teks tentang tanaman lidah buaya adalah …",
+ options:[
+  "Apotek",
+  "Populer",
+  "Swalayan",
+  "Restoran",
+  "Komoditi"
+ ],
+ answer:4,
+ exp:[
+  "Salah. “Apotek” merupakan bentuk baku.",
+  "Salah. “Populer” merupakan bentuk baku.",
+  "Salah. “Swalayan” merupakan bentuk baku.",
+  "Salah. “Restoran” merupakan bentuk baku.",
+  "Benar. Dalam konteks yang dimaksud sebagai barang/hasil usaha, bentuk baku yang tepat adalah “komoditas”."
+ ],
+ source:"Sumber latihan: Paket 1, soal kesalahan penulisan kata."
+},
+{
+ q:"Karakter tokoh utama dalam puisi “Perjalanan ke Ujung Senja” digambarkan sebagai seseorang yang …",
+ options:[
+  "Cepat menyerah pada keadaan yang sulit.",
+  "Sabar, tangguh, dan tetap semangat menjalani hidup.",
+  "Tidak peduli pada pandangan orang lain.",
+  "Kaya pengalaman tetapi mudah putus asa.",
+  "Selalu mengeluh terhadap nasibnya."
+ ],
+ answer:1,
+ exp:[
+  "Salah. Puisi justru menegaskan bahwa menyerah bukan pilihan tokoh.",
+  "Benar. Larik tentang jatuh, bangun, bertahan, dan semangat yang tetap menyala menunjukkan ketangguhan.",
+  "Salah. Puisi tidak menekankan sikap tidak peduli.",
+  "Salah. Tokoh memang berpengalaman, tetapi tidak digambarkan mudah putus asa.",
+  "Salah. Tidak ada gambaran tokoh selalu mengeluh."
+ ],
+ source:"Sumber latihan: Paket 1, soal karakter tokoh dalam puisi."
+},
+{
+ q:"Latar waktu dalam puisi “Perjalanan ke Ujung Senja” adalah …",
+ options:[
+  "Pagi hari yang cerah.",
+  "Siang terik yang menyengat.",
+  "Sore menjelang malam.",
+  "Tengah malam yang sunyi.",
+  "Fajar saat mentari terbit."
+ ],
+ answer:2,
+ exp:[
+  "Salah. Tidak ada penanda pagi.",
+  "Salah. Tidak ada penanda siang terik.",
+  "Benar. Puisi menyebut matahari yang perlahan tenggelam dan suasana senja.",
+  "Salah. Suasana tengah malam tidak disebutkan.",
+  "Salah. Fajar adalah waktu matahari terbit, sedangkan puisi menggambarkan matahari tenggelam."
+ ],
+ source:"Sumber latihan: Paket 1, soal latar waktu puisi."
+},
+{
+ q:"Makna ungkapan “bara di ujung arang” dalam puisi “Perjalanan ke Ujung Senja” adalah …",
+ options:[
+  "Harapan yang perlahan padam.",
+  "Semangat yang masih tersisa meski hampir habis.",
+  "Amarah yang belum tersalurkan.",
+  "Kesedihan yang mendalam.",
+  "Luka lama yang belum sembuh."
+ ],
+ answer:1,
+ exp:[
+  "Salah. Ungkapan tersebut justru menunjukkan masih adanya semangat.",
+  "Benar. Bara pada arang menggambarkan sesuatu yang masih menyala walaupun hampir habis.",
+  "Salah. Tidak ada konteks kemarahan dalam larik tersebut.",
+  "Salah. Kesedihan bukan makna utama ungkapan itu.",
+  "Salah. Makna utamanya adalah daya juang yang masih ada."
+ ],
+ source:"Sumber latihan: Paket 1, soal makna kias puisi."
+},
+{
+ q:"Majas pada larik “tongkatnya menjadi saksi setiap tapak perjuangan” adalah …",
+ options:["Hiperbola","Simile","Metafora","Personifikasi","Ironi"],
+ answer:3,
+ exp:[
+  "Salah. Hiperbola adalah gaya bahasa yang melebih-lebihkan.",
+  "Salah. Simile biasanya menggunakan penanda perbandingan seperti “seperti” atau “bagai”.",
+  "Salah. Metafora merupakan perbandingan langsung, tetapi pada larik ini benda mati diberi kemampuan manusia.",
+  "Benar. Tongkat diberi kemampuan seperti manusia, yaitu menjadi “saksi”; ini merupakan personifikasi.",
+  "Salah. Ironi menyatakan sesuatu dengan maksud sindiran yang berlawanan."
+ ],
+ source:"Sumber latihan: Paket 1, soal majas puisi."
+},
+{
+ q:"Emosi yang paling mungkin dirasakan pembaca setelah membaca puisi “Di Balik Jendela Waktu” adalah …",
+ options:[
+  "Gembira dan bersemangat.",
+  "Sedih dan haru karena kehilangan.",
+  "Bingung dengan makna puisinya.",
+  "Marah terhadap tokoh ibu.",
+  "Tak peduli karena puisinya suram."
+ ],
+ answer:1,
+ exp:[
+  "Salah. Suasana puisi didominasi kehilangan dan kerinduan.",
+  "Benar. Kata “kehilangan”, “rindu”, dan “sepi” membangun suasana sedih dan haru.",
+  "Salah. Makna puisi masih dapat dipahami dari suasana kehilangan.",
+  "Salah. Tokoh ibu tidak menjadi sumber konflik atau kemarahan.",
+  "Salah. Pembaca justru diajak merasakan suasana emosional puisi."
+ ],
+ source:"Sumber latihan: Paket 1, soal respons emosional puisi."
+},
+{
+ q:"Majas dominan dalam puisi “Langit Tak Lagi Biru” dan efek emosionalnya adalah …",
+ options:[
+  "Simile — menimbulkan rasa lucu dan santai.",
+  "Hiperbola — menimbulkan rasa kagum.",
+  "Personifikasi — menimbulkan rasa hampa dan prihatin.",
+  "Paradoks — menimbulkan rasa marah dan kecewa.",
+  "Eufemisme — menimbulkan rasa canggung."
+ ],
+ answer:2,
+ exp:[
+  "Salah. Ada perbandingan, tetapi efek utama puisi bukan lucu dan santai.",
+  "Salah. Puisi tidak terutama menggunakan hiperbola dan tidak membangun rasa kagum.",
+  "Benar. Benda/hal abstrak diberi sifat manusia, misalnya angin yang seolah dapat membaca; suasananya terasa hampa dan prihatin.",
+  "Salah. Paradoks bukan majas dominan dalam kutipan tersebut.",
+  "Salah. Eufemisme adalah penghalusan ungkapan, bukan ciri utama puisi ini."
+ ],
+ source:"Sumber latihan: Paket 1, soal majas dan efek emosional."
+},
+{
+ q:"Respons emosional yang tepat setelah membaca dialog drama tentang Ibu dan Adi adalah …",
+ options:[
+  "Terinspirasi dan tersentuh oleh pesan moralnya.",
+  "Kesal terhadap sikap Ibu yang terlalu menasihati.",
+  "Lucu karena percakapan antara ibu dan anaknya.",
+  "Takut karena tokoh Ibu mengancam Adi.",
+  "Bosan karena tidak ada konflik sama sekali."
+ ],
+ answer:0,
+ exp:[
+  "Benar. Dialog menekankan bahwa kebaikan tetap perlu dipertahankan meskipun menghadapi perlakuan buruk.",
+  "Salah. Ibu tidak sekadar menasihati; ia memberi dorongan dan nilai moral.",
+  "Salah. Isi dialog lebih reflektif daripada lucu.",
+  "Salah. Tidak ada ancaman dari Ibu.",
+  "Salah. Ada konflik batin Adi tentang lelah berbuat baik sehingga dialog tetap memiliki persoalan."
+ ],
+ source:"Sumber latihan: Paket 1, soal respons emosional drama."
+}
 ];
 
-let answers = Array(questions.length).fill(null);
-let flags = Array(questions.length).fill(false);
-let current = 0;
-let remaining = 60 * 60;
-let timerId = null;
-let submitted = false;
-let started = false;
+let answered=0, score=0;
 
-function showPage(page){
-  document.getElementById('materi').classList.toggle('hidden',page!=='materi');
-  document.getElementById('ujian').classList.toggle('hidden',page!=='ujian');
-  document.getElementById('hasil').classList.toggle('hidden',page!=='hasil');
-  document.getElementById('tabMateri').classList.toggle('active',page==='materi');
-  document.getElementById('tabUjian').classList.toggle('active',page==='ujian');
-  if(page==='ujian') renderQuestion();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-function startExam(){
-  if(!started){
-    started=true;
-    remaining=3600;
-    timerId=setInterval(tick,1000);
-  }
-  showPage('ujian');
-}
-function tick(){
-  if(submitted)return;
-  remaining--;
-  updateTimer();
-  if(remaining<=0){
-    remaining=0;
-    updateTimer();
-    submitExam(true);
-  }
-}
-function updateTimer(){
-  const el=document.getElementById('timer');
-  const m=Math.floor(remaining/60).toString().padStart(2,'0');
-  const s=(remaining%60).toString().padStart(2,'0');
-  el.textContent=`${m}:${s}`;
-  el.classList.toggle('warn',remaining<=600&&remaining>300);
-  el.classList.toggle('danger',remaining<=300);
-  document.title=`${m}:${s} — Simulasi Ujian`;
-}
-function renderQuestion(){
-  if(submitted)return;
-  const q=questions[current];
-  document.getElementById('questionCounter').textContent=`Soal ${current+1} dari ${questions.length} · ${q.topic}`;
-  document.getElementById('answeredCounter').textContent=`Terjawab ${answers.filter(a=>a!==null).length}/${questions.length}`;
-  document.getElementById('progressFill').style.width=(answers.filter(a=>a!==null).length/questions.length*100)+'%';
-  document.getElementById('questionText').textContent=`${current+1}. ${q.q}`;
-  const options=document.getElementById('options'); options.innerHTML='';
-  q.o.forEach((opt,i)=>{
-    const label=document.createElement('label');
-    label.className='option'+(answers[current]===i?' selected':'');
-    label.innerHTML=`<input type="radio" name="answer" ${answers[current]===i?'checked':''}><span class="letter">${String.fromCharCode(65+i)}</span><span></span>`;
-    label.querySelector('span:last-child').textContent=opt;
-    label.addEventListener('click',()=>{
-      answers[current]=i;
-      renderQuestion();
-    });
-    options.appendChild(label);
+function render(){
+  const quiz=document.getElementById('quiz');
+  quiz.innerHTML='';
+  questions.forEach((item,i)=>{
+    const card=document.createElement('section');
+    card.className='card';
+    card.id='q'+i;
+    const options=item.options.map((op,j)=>`
+      <button class="option" data-q="${i}" data-o="${j}" onclick="choose(${i},${j})">
+        <span class="letter">${String.fromCharCode(65+j)}.</span>${op}
+      </button>`).join('');
+    const exp=item.exp.map((x,j)=>`<div><strong>${String.fromCharCode(65+j)}.</strong> ${x}</div>`).join('');
+    card.innerHTML=`
+      <div class="qnum">SOAL ${i+1}</div>
+      <h2 class="question">${item.q}</h2>
+      ${item.source ? `<div class="source">${item.source}</div>`:''}
+      <div class="options">${options}</div>
+      <div class="explanation" id="exp${i}">
+        <div style="margin-bottom:10px"><strong>Jawaban benar: ${String.fromCharCode(65+item.answer)}</strong></div>
+        ${exp}
+      </div>
+    `;
+    quiz.appendChild(card);
   });
-  document.getElementById('prevBtn').disabled=current===0;
-  document.getElementById('nextBtn').disabled=current===questions.length-1;
-  const fb=document.getElementById('flagBtn');
-  fb.classList.toggle('marked',flags[current]);
-  fb.textContent=flags[current]?'⚑ Ragu-ragu ditandai':'⚑ Tandai ragu-ragu';
-  renderGrid();
+  updateProgress();
 }
-function renderGrid(){
-  const grid=document.getElementById('numberGrid'); grid.innerHTML='';
-  questions.forEach((q,i)=>{
-    const b=document.createElement('button');
-    b.className='num'+(answers[i]!==null?' answered':'')+(flags[i]?' flagged':'')+(current===i?' current':'');
-    b.textContent=i+1;b.title=`Soal ${i+1}${answers[i]!==null?' · terjawab':''}${flags[i]?' · ragu-ragu':''}`;
-    b.onclick=()=>{current=i;renderQuestion();window.scrollTo({top:0,behavior:'smooth'});};
-    grid.appendChild(b);
+
+function choose(qIndex,optIndex){
+  const card=document.getElementById('q'+qIndex);
+  if(card.dataset.done==='1') return;
+  card.dataset.done='1';
+  answered++;
+  const item=questions[qIndex];
+  const buttons=card.querySelectorAll('.option');
+  buttons.forEach((b,j)=>{
+    b.disabled=true;
+    if(j===item.answer) b.classList.add('correct');
+    if(j===optIndex && j!==item.answer) b.classList.add('wrong');
+    if(j===optIndex) b.classList.add('selected');
   });
-  const count=answers.filter(a=>a!==null).length;
-  const flagged=flags.filter(Boolean).length;
-  document.getElementById('sideSummary').textContent=`Terjawab: ${count} · Kosong: ${questions.length-count} · Ragu-ragu: ${flagged}`;
+  if(optIndex===item.answer) score++;
+  document.getElementById('exp'+qIndex).classList.add('show');
+  updateProgress();
+  if(answered===questions.length) showResult();
 }
-function moveQuestion(delta){current=Math.max(0,Math.min(questions.length-1,current+delta));renderQuestion();window.scrollTo({top:0,behavior:'smooth'});}
-function toggleFlag(){flags[current]=!flags[current];renderQuestion();}
-function trySubmit(){
-  const empty=answers.filter(a=>a===null).length;
-  if(empty>0){
-    const go=confirm(`Masih ada ${empty} soal yang belum dijawab. Kamu harus menjawab semua soal sebelum mengumpulkan. Tekan OK untuk menuju soal kosong pertama.`);
-    if(go){current=answers.findIndex(a=>a===null);renderQuestion();}
-    return;
-  }
-  const flagged=flags.filter(Boolean).length;
-  const go=confirm(`Semua soal sudah dijawab. Ada ${flagged} soal bertanda ragu-ragu. Yakin ingin mengumpulkan jawaban? Setelah dikumpulkan, jawaban tidak bisa diubah.`);
-  if(go)submitExam(false);
+
+function updateProgress(){
+  const n=answered+1;
+  document.getElementById('progressText').textContent =
+    answered===questions.length ? 'Semua soal selesai' : `Terjawab ${answered} dari ${questions.length}`;
+  document.getElementById('scoreText').textContent=`Skor: ${score}`;
+  document.getElementById('bar').style.width=(answered/questions.length*100)+'%';
 }
-function submitExam(auto){
-  if(submitted)return;
-  if(!auto && answers.some(a=>a===null))return;
-  submitted=true;
-  if(timerId)clearInterval(timerId);
-  const correct=questions.filter((q,i)=>answers[i]===q.a).length;
-  const wrong=answers.filter((a,i)=>a!==null&&a!==questions[i].a).length;
-  const blank=answers.filter(a=>a===null).length;
-  const score=Math.round(correct/questions.length*100);
-  document.getElementById('submitReason').textContent=auto?'Waktu 60 menit habis. Simulasi dikumpulkan otomatis; soal yang belum dijawab dihitung salah.':'Jawaban berhasil dikumpulkan.';
-  document.getElementById('score').textContent=`${score}/100`;
-  document.getElementById('scoreDetails').textContent=`Benar ${correct} · Salah ${wrong} · Kosong ${blank}`;
-  document.getElementById('resultSummary').textContent=`Total 40 soal. Terjawab ${questions.length-blank}, kosong ${blank}, ditandai ragu-ragu ${flags.filter(Boolean).length}.`;
-  const review=document.getElementById('review');review.innerHTML='';
-  questions.forEach((q,i)=>{
-    const div=document.createElement('article');div.className='review-item';
-    const status=answers[i]===q.a?'Benar':answers[i]===null?'Kosong':'Salah';
-    const chosen=answers[i]===null?'Belum dijawab':`${String.fromCharCode(65+answers[i])}. ${q.o[answers[i]]}`;
-    div.innerHTML=`<div class="pill">${i+1}. ${q.topic}</div><div><b>${q.q}</b></div>`;
-    const st=document.createElement('p');st.className=status==='Benar'?'correct':'incorrect';st.textContent=status+(flags[i]?' · Ditandai ragu-ragu':'');div.appendChild(st);
-    const your=document.createElement('p');your.textContent=`Jawaban kamu: ${chosen}`;div.appendChild(your);
-    const key=document.createElement('p');key.innerHTML='<b>Kunci jawaban: </b>';key.append(document.createTextNode(`${String.fromCharCode(65+q.a)}. ${q.o[q.a]}`));div.appendChild(key);
-    const exp=document.createElement('p');exp.className='muted';exp.textContent=q.e;div.appendChild(exp);
-    review.appendChild(div);
-  });
-  showPage('hasil');
+
+function showResult(){
+  const box=document.getElementById('result');
+  box.classList.add('show');
+  document.getElementById('finalScore').textContent=`${score}/${questions.length}`;
+  let msg='';
+  const p=score/questions.length*100;
+  if(p>=90) msg='Mantap! Pemahamanmu sudah sangat kuat.';
+  else if(p>=75) msg='Bagus! Tinggal perkuat beberapa bagian yang masih keliru.';
+  else if(p>=60) msg='Lumayan. Ulangi soal yang salah dan perhatikan pembahasannya.';
+  else msg='Tidak apa-apa. Gunakan pembahasan sebagai bahan belajar lalu coba lagi.';
+  document.getElementById('finalMessage').textContent=msg;
+  box.scrollIntoView({behavior:'smooth'});
 }
-function restartExam(){
-  answers=Array(questions.length).fill(null);flags=Array(questions.length).fill(false);current=0;remaining=3600;submitted=false;started=false;
-  if(timerId)clearInterval(timerId);timerId=null;updateTimer();startExam();
-}
-updateTimer();
+
+render();
 </script>
 </body>
 </html>
